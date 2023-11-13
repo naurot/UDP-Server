@@ -20,7 +20,6 @@ public class Main {
         System.out.println("Listening on port: " + datagramSocket.getLocalPort());
 
         while (true) {
-
             DatagramPacket request = new DatagramPacket(receiveBuffer, 1029);
             datagramSocket.receive(request);
 
@@ -51,9 +50,9 @@ public class Main {
 
         public void run() {
             DatagramPacket packetS, packetR = null;
-            byte[] response = new byte[1029];
+//            byte[] response = new byte[1029];
             byte[] receive = new byte[1029];
-            byte[] length = ByteBuffer.allocate(4).putInt(1029).array();
+//            byte[] length = ByteBuffer.allocate(4).putInt(1029).array();
             System.out.println("Connected: " + ip + ":" + port);
             System.out.println("\tmsg: " + msg);
             StringBuilder webPage = new StringBuilder();
@@ -90,7 +89,6 @@ public class Main {
                             System.out.println("\tReceived ack" + packetR.getData()[0]);
                         }catch(SocketTimeoutException e){
                             System.out.println("SocketTimeoutException: " + e);
-                            System.out.println("Waiting for packet...");
                         }
                     }
                 }
