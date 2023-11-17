@@ -5,9 +5,9 @@ public class MessageType {
     static final int MAX_SIZE = 1024;
     static final int OVERHEAD = 5;
     String msg;
-    int seqNum, lengthOfData, lengthOfMsg, start;
+    private int seqNum, lengthOfData, lengthOfMsg, start;
     byte[] data, length;
-    byte seq;
+    private byte seq;
 
     public MessageType() {
 

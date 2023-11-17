@@ -76,19 +76,20 @@ public class Main {
                 while (thing1.hasNextByteArrayData()) {
                     thing1.makeByteArrayData();
                     firstWord = "Sending";
-                    packetS = new DatagramPacket(thing1.getByteArrayData(), thing1.lengthOfData, ip, port);
-                    while (packetR == null || packetR.getData()[0] != thing1.getSeqNum()) {
+                    packetS = new DatagramPacket(thing1.getByteArrayData(), thing1.getPacketLength(), ip, port);
+                    receive[0] = 2; // sets seqNum out of bounds - won't match anything
+                    packetR = new DatagramPacket(receive, 1029, ip, port);
+                    while (packetR.getData()[0] != thing1.getSeqNum()) {
                         System.out.println(firstWord + " Seq#" + thing1.getSeqNum());
                         System.out.println("\tPacketLength: " +thing1.getLength());
-                        firstWord = "*** Resending";
+                        firstWord = "\t*** Resending";
                         socket.send(packetS);
                         try {
-                            packetR = new DatagramPacket(receive, 1029, ip, port);
                             System.out.println("\tWaiting for ack. Expecting ack" + thing1.getSeqNum());
                             socket.receive(packetR);
                             System.out.println("\tReceived ack" + packetR.getData()[0]);
                         }catch(SocketTimeoutException e){
-                            System.out.println("SocketTimeoutException: " + e);
+                            System.out.println("\tSocketTimeoutException: " + e);
                         }
                     }
                 }
