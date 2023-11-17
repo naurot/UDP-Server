@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.net.*;
@@ -68,6 +69,11 @@ public class Main {
                     webPage.append(webResp);
                     webResp = bufferedReader.readLine();
                 }
+
+                FileWriter fout = new FileWriter(("something1.html"));
+                fout.write(webPage.toString());
+                fout.close();
+
                 bufferedReader.close();
                 thing1 = new MessageType(webPage.toString());
                 //send to client in packet payload size 1024 with seqNum
