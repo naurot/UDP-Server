@@ -1,21 +1,21 @@
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 
-public class MessageType {
+public class MessageTyp {
     static final int MAX_SIZE = 1024;
-    static final int OVERHEAD = 5;
+    static final int OVERHEAD = 5;// 1byte seqNum, 4 bytes length of message
     String msg;
     private int seqNum, lengthOfData, lengthOfMsg, start;
     byte[] data, length;
     private byte seq;
 
-    public MessageType() {
+    public MessageTyp() {
 
     }
 
-    public MessageType(String s) {
+    public MessageTyp(String s) {
         msg = s;
-        seqNum = 1;
+        seqNum = 1; // TODO ???
         seq = (byte) seqNum;
         data = new byte[MAX_SIZE + OVERHEAD];
         start = 0;
