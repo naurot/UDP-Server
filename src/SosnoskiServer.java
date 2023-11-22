@@ -6,7 +6,7 @@ import java.net.*;
 import java.nio.ByteBuffer;
 import java.util.Scanner;
 
-public class Main {
+public class SosnoskiServer {
     static int delay;
 
     public static void main(String[] args) throws Exception {
